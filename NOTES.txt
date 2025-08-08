@@ -1,0 +1,6 @@
+Notes and caveats:
+- Termux approach is easiest for full Sherlock functionality: run Python nearly unmodified.
+- Packaging for Android requires dealing with native wheels (Vosk) and potential licensing for Chaquopy.
+- gradle-wrapper.jar not included. Generate by running `gradle wrapper` on a machine with Gradle.
+- For low-memory devices: strip unused ABIs (only armeabi-v7a or arm64-v8a), enable proguard, and avoid bundling large models in APK; download models at first run to external storage.
+- Voice interface: prefer using Android's AudioRecord + Vosk native model (place models in external storage).

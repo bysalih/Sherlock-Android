@@ -1,0 +1,8 @@
+# Python dependencies (Termux / Chaquopy)
+requests
+beautifulsoup4
+colorama
+rich
+vosk          # speech recognition offline (requires models)
+SpeechRecognition
+pyaudio       # may not build on Android; on Termux use `pkg install pulseaudio` and configure

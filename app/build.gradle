@@ -1,0 +1,46 @@
+plugins {
+    id 'com.android.application'
+    id 'com.chaquo.python' // Chaquopy plugin for embedding Python
+}
+
+android {
+    compileSdkVersion 33
+    defaultConfig {
+        applicationId "com.example.sherlock"
+        minSdkVersion 21
+        targetSdkVersion 33
+        versionCode 1
+        versionName "0.1"
+        ndk {
+            abiFilters "armeabi-v7a", "arm64-v8a"
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+chaquopy {
+    // Use pip to install Python dependencies into the APK
+    pip {
+        install "requests"
+        install "beautifulsoup4"
+        install "vosk"
+        install "SpeechRecognition"
+    }
+    // You can add more configuration here, like jniLibraries with native libs if needed
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.7.0'
+    // Chaquopy runtime dependency is configured by the plugin
+}
+
+// IMPORTANT:
+// - Chaquopy free tier may limit some packages. For larger dependencies or native modules (vosk) you may
+//   need to provide wheels built for Android or include native libraries in src/main/jniLibs.
+// - Alternatively use BeeWare / VOC or Termux approach for more control.
