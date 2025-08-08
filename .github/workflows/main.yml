@@ -3,44 +3,27 @@ name: Android APK Build
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Repo'yu çek
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      # 2️⃣ Java JDK kur
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: 17
 
-      # 3️⃣ Gradle önbellekleme
-      - name: Cache Gradle packages
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
-
-      # 4️⃣ APK derle
       - name: Build APK (Debug)
         run: ./gradlew assembleDebug
         working-directory: Sherlock-Android
 
-      # 5️⃣ Çıktıyı yükle (Artifacts)
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: Sherlock-Android-APK
           path: Sherlock-Android/app/build/outputs/apk/debug/*.apk
+
