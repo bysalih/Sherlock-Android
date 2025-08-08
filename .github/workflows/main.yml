@@ -19,7 +19,7 @@ jobs:
 
       - name: Build APK (Debug)
         run: ./gradlew assembleDebug
-        working-directory: Sherlock-Android
+        working-directory: ./
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
