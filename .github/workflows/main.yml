@@ -19,6 +19,7 @@ jobs:
       run: chmod +x ./gradlew
     - name: Build APK
       run: ./gradlew assembleDebug
+      working-directory: Sherlock-Android
     - name: Upload APK artifact
       uses: actions/upload-artifact@v4
       with:
