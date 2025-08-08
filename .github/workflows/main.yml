@@ -25,7 +25,7 @@ jobs:
         working-directory: ./
 
       - name: Build APK (Debug)
-        run: ./gradlew assembleDebug
+        run: ./gradlew/wrapper assembleDebug
         working-directory: ./
 
       - name: Upload APK artifact
