@@ -22,7 +22,7 @@ jobs:
 
       - name: Make gradlew executable
         run: chmod +x ./gradlew
-        working-directory: Sherlock-Android
+        working-directory: ./
 
       - name: Build APK (Debug)
         run: ./gradlew assembleDebug
