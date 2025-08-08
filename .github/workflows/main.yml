@@ -22,16 +22,14 @@ jobs:
 
       - name: Make gradlew executable
         run: chmod +x ./gradlew
-        working-directory: ./
+        working-directory: Sherlock-Android
 
-  - name: Build APK (Debug)
+      - name: Build APK (Debug)
         run: ./gradlew assembleDebug
-        working-directory:
-  
+        working-directory: Sherlock-Android
+
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
           name: Sherlock-Android-APK
           path: Sherlock-Android/app/build/outputs/apk/debug/*.apk
-
-
